@@ -22,5 +22,41 @@ namespace ChampSelectSpy.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("EUW")]
+        public string Region {
+            get {
+                return ((string)(this["Region"]));
+            }
+            set {
+                this["Region"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AutoOPGG {
+            get {
+                return ((bool)(this["AutoOPGG"]));
+            }
+            set {
+                this["AutoOPGG"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoUGG {
+            get {
+                return ((bool)(this["AutoUGG"]));
+            }
+            set {
+                this["AutoUGG"] = value;
+            }
+        }
     }
 }

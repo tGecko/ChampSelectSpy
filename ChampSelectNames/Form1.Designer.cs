@@ -1,4 +1,4 @@
-﻿namespace ChampSelectNames
+﻿namespace ChampSelectSpy
 {
     partial class Form1
     {
@@ -45,15 +45,15 @@
             // 
             this.tmr1.Enabled = true;
             this.tmr1.Interval = 500;
-            this.tmr1.Tick += new System.EventHandler(this.tmr1_Tick);
+            this.tmr1.Tick += new System.EventHandler(this.Tmr1_Tick);
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 158);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 145);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(326, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(325, 22);
             this.statusStrip1.TabIndex = 5;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -65,23 +65,24 @@
             // 
             // btnOpGGAll
             // 
-            this.btnOpGGAll.Location = new System.Drawing.Point(12, 98);
+            this.btnOpGGAll.Location = new System.Drawing.Point(12, 87);
             this.btnOpGGAll.Name = "btnOpGGAll";
             this.btnOpGGAll.Size = new System.Drawing.Size(75, 23);
             this.btnOpGGAll.TabIndex = 10;
             this.btnOpGGAll.Text = "OP.GG All";
             this.btnOpGGAll.UseVisualStyleBackColor = true;
-            this.btnOpGGAll.Click += new System.EventHandler(this.btnOpGGAll_Click);
+            this.btnOpGGAll.Click += new System.EventHandler(this.BtnOpGGAll_Click);
             // 
             // chkAutoOPGG
             // 
             this.chkAutoOPGG.AutoSize = true;
-            this.chkAutoOPGG.Location = new System.Drawing.Point(93, 102);
+            this.chkAutoOPGG.Location = new System.Drawing.Point(93, 91);
             this.chkAutoOPGG.Name = "chkAutoOPGG";
             this.chkAutoOPGG.Size = new System.Drawing.Size(112, 17);
             this.chkAutoOPGG.TabIndex = 11;
             this.chkAutoOPGG.Text = "Auto open OP.GG";
             this.chkAutoOPGG.UseVisualStyleBackColor = true;
+            this.chkAutoOPGG.CheckedChanged += new System.EventHandler(this.ChkAutoOPGG_CheckedChanged);
             // 
             // cmbRegion
             // 
@@ -97,10 +98,11 @@
             "LAS",
             "LAN",
             "RU"});
-            this.cmbRegion.Location = new System.Drawing.Point(247, 100);
+            this.cmbRegion.Location = new System.Drawing.Point(247, 87);
             this.cmbRegion.Name = "cmbRegion";
             this.cmbRegion.Size = new System.Drawing.Size(67, 21);
             this.cmbRegion.TabIndex = 12;
+            this.cmbRegion.SelectedIndexChanged += new System.EventHandler(this.CmbRegion_SelectedIndexChanged);
             // 
             // txtParticipants
             // 
@@ -108,34 +110,35 @@
             this.txtParticipants.Multiline = true;
             this.txtParticipants.Name = "txtParticipants";
             this.txtParticipants.ReadOnly = true;
-            this.txtParticipants.Size = new System.Drawing.Size(302, 89);
+            this.txtParticipants.Size = new System.Drawing.Size(302, 78);
             this.txtParticipants.TabIndex = 13;
             // 
             // btnUGGALL
             // 
-            this.btnUGGALL.Location = new System.Drawing.Point(12, 127);
+            this.btnUGGALL.Location = new System.Drawing.Point(12, 116);
             this.btnUGGALL.Name = "btnUGGALL";
             this.btnUGGALL.Size = new System.Drawing.Size(75, 23);
             this.btnUGGALL.TabIndex = 14;
             this.btnUGGALL.Text = "U.GG All";
             this.btnUGGALL.UseVisualStyleBackColor = true;
-            this.btnUGGALL.Click += new System.EventHandler(this.btnUGGALL_Click);
+            this.btnUGGALL.Click += new System.EventHandler(this.BtnUGGALL_Click);
             // 
             // chkAutoUGG
             // 
             this.chkAutoUGG.AutoSize = true;
-            this.chkAutoUGG.Location = new System.Drawing.Point(93, 131);
+            this.chkAutoUGG.Location = new System.Drawing.Point(93, 120);
             this.chkAutoUGG.Name = "chkAutoUGG";
             this.chkAutoUGG.Size = new System.Drawing.Size(105, 17);
             this.chkAutoUGG.TabIndex = 15;
             this.chkAutoUGG.Text = "Auto open U.GG";
             this.chkAutoUGG.UseVisualStyleBackColor = true;
+            this.chkAutoUGG.CheckedChanged += new System.EventHandler(this.ChkAutoUGG_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(326, 180);
+            this.ClientSize = new System.Drawing.Size(325, 167);
             this.Controls.Add(this.chkAutoUGG);
             this.Controls.Add(this.btnUGGALL);
             this.Controls.Add(this.txtParticipants);
@@ -145,7 +148,7 @@
             this.Controls.Add(this.statusStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form1";
-            this.Text = "ChampSelectSpy - 1.1";
+            this.Text = "ChampSelectSpy - 1.2";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.statusStrip1.ResumeLayout(false);

@@ -1,23 +1,16 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Management;
 using System.Net;
-using System.Net.Security;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Windows.Forms;
 
-namespace ChampSelectNames
+namespace ChampSelectSpy
 {
-
     public partial class Form1 : Form
     {
         private struct ClientData
@@ -33,38 +26,34 @@ namespace ChampSelectNames
             public string SummonerDisplayName;
             public String GameState;
         }
-        List<string> participants = new List<string>();
-        class summoner
+
+        readonly List<string> participants = new();
+        class Summoner
         {
             public String DisplayName;
         }
+
         private ClientData ClientInfo;
-        ManagementObject leagueProcess;
-        int leagueID;
         ManagementClass mngmtClass;
-        String cmdline;
-        String RiotPort;
-        String RiotToken;
-        String ClientPort;
-        String ClientToken;
-        
-        Boolean LeagueRunning = false;
+
         public Form1()
         {
             InitializeComponent();
-            
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             mngmtClass = new ManagementClass("Win32_Process");
-            cmbRegion.Text = "EUW";
             toolStripStatusLabel1.Text = "Waiting for League...";
-            chkAutoOPGG.Checked = true;
+            chkAutoOPGG.Checked = Properties.Settings.Default.AutoOPGG;
+            chkAutoUGG.Checked = Properties.Settings.Default.AutoUGG;
+            cmbRegion.Text = Properties.Settings.Default.Region;
+
         }
 
 
-        public static string getBetween(string strSource, string strStart, string strEnd)
+        public static string GetBetween(string strSource, string strStart, string strEnd)
         {
             if (strSource.Contains(strStart) && strSource.Contains(strEnd))
             {
@@ -77,7 +66,7 @@ namespace ChampSelectNames
             return "";
         }
 
-        private void tmr1_Tick(object sender, EventArgs e)
+        private void Tmr1_Tick(object sender, EventArgs e)
         {
             Process[] processes = Process.GetProcessesByName("LeagueClientUx");
             if (processes.Length > 0)
@@ -92,31 +81,31 @@ namespace ChampSelectNames
                         if (obj["Name"].Equals("LeagueClientUx.exe"))
                         {
                             ClientInfo.cmdline = obj["Name"] + " [" + obj["CommandLine"] + "]";
-                            ClientInfo.RiotPort = int.Parse(getBetween(ClientInfo.cmdline, "--riotclient-app-port=", "\" \"--no-rads"));
-                            ClientInfo.RiotToken = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes("riot:" + getBetween(ClientInfo.cmdline, "--riotclient-auth-token=", "\" \"--riotclient")));
-                            ClientInfo.ClientPort = int.Parse(getBetween(ClientInfo.cmdline, "--app-port=", "\" \"--install"));
-                            ClientInfo.ClientToken = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes("riot:" + getBetween(ClientInfo.cmdline, "--remoting-auth-token=", "\" \"--respawn-command=LeagueClient.exe")));
+                            ClientInfo.RiotPort = int.Parse(GetBetween(ClientInfo.cmdline, "--riotclient-app-port=", "\" \"--no-rads"));
+                            ClientInfo.RiotToken = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes("riot:" + GetBetween(ClientInfo.cmdline, "--riotclient-auth-token=", "\" \"--riotclient")));
+                            ClientInfo.ClientPort = int.Parse(GetBetween(ClientInfo.cmdline, "--app-port=", "\" \"--install"));
+                            ClientInfo.ClientToken = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes("riot:" + GetBetween(ClientInfo.cmdline, "--remoting-auth-token=", "\" \"--respawn-command=LeagueClient.exe")));
                         }
                     }
                 }
             }
             else
             {
-                ClientInfo = default(ClientData);
+                ClientInfo = default;
                 toolStripStatusLabel1.Text = "Waiting for League...";
             }
 
             if (ClientInfo.isRunning)
             {
-                if(ClientInfo.Region == null|| ClientInfo.Region == "")
+                if (ClientInfo.Region == null || ClientInfo.Region == "")
                 {
-                    ClientInfo.Region = getBetween(MakeRequest(ClientInfo, "GET", "/lol-rso-auth/v1/authorization", client: true), "currentPlatformId\":\"", "\",\"subject").ToLower();
+                    ClientInfo.Region = GetBetween(MakeRequest(ClientInfo, "GET", "/lol-rso-auth/v1/authorization", client: true), "currentPlatformId\":\"", "\",\"subject").ToLower();
                 }
 
-                if(ClientInfo.SummonerDisplayName == null)
+                if (ClientInfo.SummonerDisplayName == null)
                 {
-                    summoner summ= JsonConvert.DeserializeObject<summoner>(MakeRequest(ClientInfo, "GET", "/lol-summoner/v1/current-summoner", client: true));
-                    if(summ != null)
+                    Summoner summ = JsonConvert.DeserializeObject<Summoner>(MakeRequest(ClientInfo, "GET", "/lol-summoner/v1/current-summoner", client: true));
+                    if (summ != null)
                     {
                         ClientInfo.SummonerDisplayName = summ.DisplayName;
 
@@ -124,9 +113,9 @@ namespace ChampSelectNames
                 }
 
                 ClientInfo.GameState = MakeRequest(ClientInfo, "GET", "/lol-gameflow/v1/gameflow-phase", true).Trim('"');
-                if(ClientInfo.GameState == "ChampSelect" || ClientInfo.GameState == "InProgress")
+                if (ClientInfo.GameState == "ChampSelect" || ClientInfo.GameState == "InProgress")
                 {
-                    if(participants.Count < 5)
+                    if (participants.Count < 5)
                     {
                         DataSet dataSet = JsonConvert.DeserializeObject<DataSet>(MakeRequest(ClientInfo, "GET", "/chat/v5/participants/champ-select", client: false));
                         DataTable dataTable = dataSet.Tables["participants"];
@@ -136,24 +125,24 @@ namespace ChampSelectNames
                             {
                                 participants.Add(row["game_name"].ToString());
                             }
-                            if(chkAutoOPGG.Checked)
+                            if (chkAutoOPGG.Checked)
                             {
-                                btnOpGGAll_Click(null,null);
+                                BtnOpGGAll_Click(null, null);
                             }
                             if (chkAutoUGG.Checked)
                             {
-                                btnUGGALL_Click(null, null);
+                                BtnUGGALL_Click(null, null);
                             }
                         }
                     }
-                    
- 
+
+
                 }
                 else
                 {
                     participants.Clear();
                 }
-                if(participants.Count > 0)
+                if (participants.Count > 0)
                 {
                     txtParticipants.Text = string.Join("\r\n", participants);
                 }
@@ -185,28 +174,46 @@ namespace ChampSelectNames
             }
         }
 
-        private void btnOpGGAll_Click(object sender, EventArgs e)
+        private void BtnOpGGAll_Click(object sender, EventArgs e)
         {
-            if(participants.Count > 0)
+            if (participants.Count > 0)
             {
-                System.Diagnostics.Process.Start(new ProcessStartInfo
+                Process.Start(new ProcessStartInfo
                 {
-                    FileName = "https://www.op.gg/multisearch/" + cmbRegion.Text + "?summoners=" + string.Join(",",participants),
+                    FileName = "https://www.op.gg/multisearch/" + cmbRegion.Text + "?summoners=" + string.Join(",", participants),
                     UseShellExecute = true
                 });
             }
         }
 
-        private void btnUGGALL_Click(object sender, EventArgs e)
+        private void BtnUGGALL_Click(object sender, EventArgs e)
         {
             if (participants.Count > 0)
             {
-                System.Diagnostics.Process.Start(new ProcessStartInfo
+                Process.Start(new ProcessStartInfo
                 {
                     FileName = "https://u.gg/multisearch?summoners=" + string.Join(",", participants) + "&region=" + ClientInfo.Region,
                     UseShellExecute = true
                 });
             }
+        }
+
+        private void ChkAutoOPGG_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.AutoOPGG = chkAutoOPGG.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void ChkAutoUGG_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.AutoUGG = chkAutoUGG.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void CmbRegion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Region = cmbRegion.Text;
+            Properties.Settings.Default.Save();
         }
     }
 }
