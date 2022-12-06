@@ -123,7 +123,7 @@ namespace ChampSelectSpy
                         {
                             foreach (DataRow row in dataTable.Rows)
                             {
-                                participants.Add(row["game_name"].ToString());
+                                participants.Add(row["name"].ToString());
                             }
                             if (chkAutoOPGG.Checked)
                             {
