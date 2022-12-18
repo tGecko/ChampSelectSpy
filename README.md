@@ -5,11 +5,7 @@ Finally you know again which lobbys to dodge and which to play!
 
 
 ###### Changelog:
-Version 1.4:  Added toggle to disable "always on top"
-
-              Added automatic minimizing on game start
-
-
+Version 1.4:  Added toggle to disable "always on top", added automatic minimizing on game start
 
 Version 1.3:  Fixed [Issue #2](https://github.com/tGecko/ChampSelectSpy/issues/2)
 
