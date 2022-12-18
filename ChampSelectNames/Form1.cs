@@ -49,6 +49,9 @@ namespace ChampSelectSpy
             chkAutoOPGG.Checked = Properties.Settings.Default.AutoOPGG;
             chkAutoUGG.Checked = Properties.Settings.Default.AutoUGG;
             cmbRegion.Text = Properties.Settings.Default.Region;
+            chkTopMost.Checked= Properties.Settings.Default.TopMost;
+            this.TopMost = Properties.Settings.Default.TopMost;
+            chkAutoMinimize.Checked = Properties.Settings.Default.AutoMinimize;
 
         }
 
@@ -113,7 +116,7 @@ namespace ChampSelectSpy
                 }
 
                 ClientInfo.GameState = MakeRequest(ClientInfo, "GET", "/lol-gameflow/v1/gameflow-phase", true).Trim('"');
-                if (ClientInfo.GameState == "ChampSelect" || ClientInfo.GameState == "InProgress")
+                if (ClientInfo.GameState == "ChampSelect")
                 {
                     if (participants.Count < 5)
                     {
@@ -137,6 +140,10 @@ namespace ChampSelectSpy
                     }
 
 
+                }else if(ClientInfo.GameState == "InProgress")
+                {
+                    if (Properties.Settings.Default.AutoMinimize) 
+                        this.WindowState = FormWindowState.Minimized;
                 }
                 else
                 {
@@ -214,6 +221,21 @@ namespace ChampSelectSpy
         {
             Properties.Settings.Default.Region = cmbRegion.Text;
             Properties.Settings.Default.Save();
+        }
+
+        private void chkTopMost_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.TopMost= chkTopMost.Checked;
+            this.TopMost= chkTopMost.Checked;
+            Properties.Settings.Default.Save();
+
+        }
+
+        private void chkAutoMinimize_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.AutoMinimize = chkAutoMinimize.Checked;
+            Properties.Settings.Default.Save();
+
         }
     }
 }

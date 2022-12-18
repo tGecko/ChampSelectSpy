@@ -38,6 +38,8 @@
             this.txtParticipants = new System.Windows.Forms.TextBox();
             this.btnUGGALL = new System.Windows.Forms.Button();
             this.chkAutoUGG = new System.Windows.Forms.CheckBox();
+            this.chkTopMost = new System.Windows.Forms.CheckBox();
+            this.chkAutoMinimize = new System.Windows.Forms.CheckBox();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,9 +53,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 145);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 170);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(325, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(329, 22);
             this.statusStrip1.TabIndex = 5;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -134,11 +136,35 @@
             this.chkAutoUGG.UseVisualStyleBackColor = true;
             this.chkAutoUGG.CheckedChanged += new System.EventHandler(this.ChkAutoUGG_CheckedChanged);
             // 
+            // chkTopMost
+            // 
+            this.chkTopMost.AutoSize = true;
+            this.chkTopMost.Location = new System.Drawing.Point(12, 145);
+            this.chkTopMost.Name = "chkTopMost";
+            this.chkTopMost.Size = new System.Drawing.Size(123, 17);
+            this.chkTopMost.TabIndex = 16;
+            this.chkTopMost.Text = "Keep window on top";
+            this.chkTopMost.UseVisualStyleBackColor = true;
+            this.chkTopMost.CheckedChanged += new System.EventHandler(this.chkTopMost_CheckedChanged);
+            // 
+            // chkAutoMinimize
+            // 
+            this.chkAutoMinimize.AutoSize = true;
+            this.chkAutoMinimize.Location = new System.Drawing.Point(148, 145);
+            this.chkAutoMinimize.Name = "chkAutoMinimize";
+            this.chkAutoMinimize.Size = new System.Drawing.Size(159, 17);
+            this.chkAutoMinimize.TabIndex = 17;
+            this.chkAutoMinimize.Text = "Auto minimize when in game";
+            this.chkAutoMinimize.UseVisualStyleBackColor = true;
+            this.chkAutoMinimize.CheckedChanged += new System.EventHandler(this.chkAutoMinimize_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(325, 167);
+            this.ClientSize = new System.Drawing.Size(329, 192);
+            this.Controls.Add(this.chkAutoMinimize);
+            this.Controls.Add(this.chkTopMost);
             this.Controls.Add(this.chkAutoUGG);
             this.Controls.Add(this.btnUGGALL);
             this.Controls.Add(this.txtParticipants);
@@ -148,7 +174,7 @@
             this.Controls.Add(this.statusStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form1";
-            this.Text = "ChampSelectSpy - 1.2";
+            this.Text = "ChampSelectSpy - 1.4";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.statusStrip1.ResumeLayout(false);
@@ -168,6 +194,8 @@
         private System.Windows.Forms.TextBox txtParticipants;
         private System.Windows.Forms.Button btnUGGALL;
         private System.Windows.Forms.CheckBox chkAutoUGG;
+        private System.Windows.Forms.CheckBox chkTopMost;
+        private System.Windows.Forms.CheckBox chkAutoMinimize;
     }
 }
 

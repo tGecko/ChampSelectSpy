@@ -58,5 +58,29 @@ namespace ChampSelectSpy.Properties {
                 this["AutoUGG"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool TopMost {
+            get {
+                return ((bool)(this["TopMost"]));
+            }
+            set {
+                this["TopMost"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoMinimize {
+            get {
+                return ((bool)(this["AutoMinimize"]));
+            }
+            set {
+                this["AutoMinimize"] = value;
+            }
+        }
     }
 }
