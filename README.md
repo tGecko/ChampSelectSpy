@@ -6,7 +6,7 @@ Finally you know again which lobbys to dodge and which to play!
 
 ###### Changelog:
 Forked
-Version 1.5:  Added Porofessor to available lookup sites, changed "always on top" to disabled on default, enabled "minimize on game start" default, tried to implement SEA server - Thanks to Philip Heller!
+Version 1.5:  Added Porofessor to available lookup sites, changed "always on top" to disabled on default, enabled "minimize on game start" default, tried to implement SEA server - Thanks to Philipp Heller!
 
 Version 1.4:  Added toggle to disable "always on top", added automatic minimizing on game start
 
