@@ -37,7 +37,7 @@ namespace ChampSelectSpy.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool AutoOPGG {
             get {
                 return ((bool)(this["AutoOPGG"]));
@@ -58,10 +58,25 @@ namespace ChampSelectSpy.Properties {
                 this["AutoUGG"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AutoPORO
+        {
+            get
+            {
+                return ((bool)(this["AutoPORO"]));
+            }
+            set
+            {
+                this["AutoPORO"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool TopMost {
             get {
                 return ((bool)(this["TopMost"]));
@@ -73,7 +88,7 @@ namespace ChampSelectSpy.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool AutoMinimize {
             get {
                 return ((bool)(this["AutoMinimize"]));

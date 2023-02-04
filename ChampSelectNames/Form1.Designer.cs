@@ -40,6 +40,8 @@
             this.chkAutoUGG = new System.Windows.Forms.CheckBox();
             this.chkTopMost = new System.Windows.Forms.CheckBox();
             this.chkAutoMinimize = new System.Windows.Forms.CheckBox();
+            this.chkAutoPORO = new System.Windows.Forms.CheckBox();
+            this.btnPOROALL = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +55,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 170);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 198);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(329, 22);
             this.statusStrip1.TabIndex = 5;
@@ -99,7 +101,8 @@
             "BR",
             "LAS",
             "LAN",
-            "RU"});
+            "RU",
+            "SEA"});
             this.cmbRegion.Location = new System.Drawing.Point(247, 87);
             this.cmbRegion.Name = "cmbRegion";
             this.cmbRegion.Size = new System.Drawing.Size(67, 21);
@@ -139,7 +142,7 @@
             // chkTopMost
             // 
             this.chkTopMost.AutoSize = true;
-            this.chkTopMost.Location = new System.Drawing.Point(12, 145);
+            this.chkTopMost.Location = new System.Drawing.Point(12, 175);
             this.chkTopMost.Name = "chkTopMost";
             this.chkTopMost.Size = new System.Drawing.Size(123, 17);
             this.chkTopMost.TabIndex = 16;
@@ -150,7 +153,7 @@
             // chkAutoMinimize
             // 
             this.chkAutoMinimize.AutoSize = true;
-            this.chkAutoMinimize.Location = new System.Drawing.Point(148, 145);
+            this.chkAutoMinimize.Location = new System.Drawing.Point(141, 175);
             this.chkAutoMinimize.Name = "chkAutoMinimize";
             this.chkAutoMinimize.Size = new System.Drawing.Size(159, 17);
             this.chkAutoMinimize.TabIndex = 17;
@@ -158,11 +161,34 @@
             this.chkAutoMinimize.UseVisualStyleBackColor = true;
             this.chkAutoMinimize.CheckedChanged += new System.EventHandler(this.chkAutoMinimize_CheckedChanged);
             // 
+            // chkAutoPORO
+            // 
+            this.chkAutoPORO.AutoSize = true;
+            this.chkAutoPORO.Location = new System.Drawing.Point(93, 147);
+            this.chkAutoPORO.Name = "chkAutoPORO";
+            this.chkAutoPORO.Size = new System.Drawing.Size(128, 17);
+            this.chkAutoPORO.TabIndex = 19;
+            this.chkAutoPORO.Text = "Auto open Porofessor";
+            this.chkAutoPORO.UseVisualStyleBackColor = true;
+            this.chkAutoPORO.CheckedChanged += new System.EventHandler(this.ChkAutoPORO_CheckedChanged);
+            // 
+            // btnPOROALL
+            // 
+            this.btnPOROALL.Location = new System.Drawing.Point(12, 143);
+            this.btnPOROALL.Name = "btnPOROALL";
+            this.btnPOROALL.Size = new System.Drawing.Size(75, 23);
+            this.btnPOROALL.TabIndex = 20;
+            this.btnPOROALL.Text = "PORO All";
+            this.btnPOROALL.UseVisualStyleBackColor = true;
+            this.btnPOROALL.Click += new System.EventHandler(this.BtnPOROALL_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(329, 192);
+            this.ClientSize = new System.Drawing.Size(329, 220);
+            this.Controls.Add(this.btnPOROALL);
+            this.Controls.Add(this.chkAutoPORO);
             this.Controls.Add(this.chkAutoMinimize);
             this.Controls.Add(this.chkTopMost);
             this.Controls.Add(this.chkAutoUGG);
@@ -174,7 +200,7 @@
             this.Controls.Add(this.statusStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form1";
-            this.Text = "ChampSelectSpy - 1.4";
+            this.Text = "ChampSelectSpy - 1.5 - Forked";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.statusStrip1.ResumeLayout(false);
@@ -196,6 +222,8 @@
         private System.Windows.Forms.CheckBox chkAutoUGG;
         private System.Windows.Forms.CheckBox chkTopMost;
         private System.Windows.Forms.CheckBox chkAutoMinimize;
+        private System.Windows.Forms.CheckBox chkAutoPORO;
+        private System.Windows.Forms.Button btnPOROALL;
     }
 }
 

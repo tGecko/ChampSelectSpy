@@ -5,6 +5,9 @@ Finally you know again which lobbys to dodge and which to play!
 
 
 ###### Changelog:
+Forked
+Version 1.5:  Added Porofessor to available lookup sites, changed "always on top" to disabled on default, enabled "minimize on game start" default, tried to implement SEA server
+
 Version 1.4:  Added toggle to disable "always on top", added automatic minimizing on game start
 
 Version 1.3:  Fixed [Issue #2](https://github.com/tGecko/ChampSelectSpy/issues/2)

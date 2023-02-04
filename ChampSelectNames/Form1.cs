@@ -48,8 +48,9 @@ namespace ChampSelectSpy
             toolStripStatusLabel1.Text = "Waiting for League...";
             chkAutoOPGG.Checked = Properties.Settings.Default.AutoOPGG;
             chkAutoUGG.Checked = Properties.Settings.Default.AutoUGG;
+            chkAutoPORO.Checked = Properties.Settings.Default.AutoPORO;
             cmbRegion.Text = Properties.Settings.Default.Region;
-            chkTopMost.Checked= Properties.Settings.Default.TopMost;
+            chkTopMost.Checked = Properties.Settings.Default.TopMost;
             this.TopMost = Properties.Settings.Default.TopMost;
             chkAutoMinimize.Checked = Properties.Settings.Default.AutoMinimize;
 
@@ -136,13 +137,18 @@ namespace ChampSelectSpy
                             {
                                 BtnUGGALL_Click(null, null);
                             }
+                            if (chkAutoPORO.Checked)
+                            {
+                                BtnPOROALL_Click(null, null);
+                            }
                         }
                     }
 
 
-                }else if(ClientInfo.GameState == "InProgress")
+                }
+                else if (ClientInfo.GameState == "InProgress")
                 {
-                    if (Properties.Settings.Default.AutoMinimize) 
+                    if (Properties.Settings.Default.AutoMinimize)
                         this.WindowState = FormWindowState.Minimized;
                 }
                 else
@@ -205,6 +211,18 @@ namespace ChampSelectSpy
             }
         }
 
+        private void BtnPOROALL_Click(object sneder, EventArgs e)
+        {
+            if (participants.Count > 0)
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = "https://porofessor.gg/pregame/" + cmbRegion.Text.ToLower() + "/" + string.Join(",", participants) + "/soloqueue",
+                    UseShellExecute = true
+                });
+            }
+        }
+
         private void ChkAutoOPGG_CheckedChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.AutoOPGG = chkAutoOPGG.Checked;
@@ -217,6 +235,12 @@ namespace ChampSelectSpy
             Properties.Settings.Default.Save();
         }
 
+        private void ChkAutoPORO_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.AutoPORO = chkAutoPORO.Checked;
+            Properties.Settings.Default.Save();
+        }
+
         private void CmbRegion_SelectedIndexChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.Region = cmbRegion.Text;
@@ -225,8 +249,8 @@ namespace ChampSelectSpy
 
         private void chkTopMost_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.TopMost= chkTopMost.Checked;
-            this.TopMost= chkTopMost.Checked;
+            Properties.Settings.Default.TopMost = chkTopMost.Checked;
+            this.TopMost = chkTopMost.Checked;
             Properties.Settings.Default.Save();
 
         }
