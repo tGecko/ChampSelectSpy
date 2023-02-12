@@ -58,6 +58,7 @@
             this.statusStrip1.Location = new System.Drawing.Point(0, 198);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(329, 22);
+            this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 5;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -199,8 +200,10 @@
             this.Controls.Add(this.btnOpGGAll);
             this.Controls.Add(this.statusStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "ChampSelectSpy - 1.5 - Forked";
+            this.Text = "ChampSelectSpy - 1.51";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.statusStrip1.ResumeLayout(false);
