@@ -1,3 +1,5 @@
+2023-05-10 Archiving this repo, as I do not play the game anymore and can't test if it still works. Feel free to fork, download, test, change, etc.
+
 Allows you to view summoner names in champ select automatically. Detects when the game starts and when you enter champ select. Also can be set to automatically multisearch op.gg/u.gg/Porofessor as soon as you are in champ select.
 
 Finally you know again which lobbys to dodge and which to play!
